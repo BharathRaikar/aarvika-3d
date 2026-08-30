@@ -363,7 +363,7 @@ section{padding:52px 0}
 <div><h4>Get in touch</h4><ul>
 <li><a href="https://wa.me/918050XXXXXX">WhatsApp</a></li>
 <li><a href="https://www.instagram.com/aarvika3d">Instagram</a></li>
-<li><a href="mailto:hello@aarvika3d.com">hello@aarvika3d.com</a></li></ul></div>
+<li><a href="mailto:aarvika3d@gmail.com">aarvika3d@gmail.com</a></li></ul></div>
 </div>
 <div class="fbot"><span>© 2026 Aarvika 3D</span><span class="mono">Prototype build</span></div>
 </div></footer>
@@ -458,8 +458,9 @@ document.getElementById('csend').onclick = () => {
   if (!w || !d) { err.style.display = 'block'; return; }
   err.style.display = 'none';
   const n = document.getElementById('cn').value.trim();
-  const msg = 'Hi Aarvika 3D — custom enquiry.' + (n ? ' Name: ' + n + '.' : '') + ' ' + d;
-  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
+  const subject = 'Custom enquiry' + (n ? ' from ' + n : '');
+  const body = (n ? 'Name: ' + n + '\n' : '') + 'WhatsApp number: ' + w + '\n\n' + d;
+  window.location.href = 'mailto:aarvika3d@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 };
 ['cw','cd'].forEach(id => document.getElementById(id).addEventListener('input', () => {
   document.getElementById('cerr').style.display = 'none';
