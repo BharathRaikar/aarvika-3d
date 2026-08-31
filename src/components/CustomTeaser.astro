@@ -1,7 +1,7 @@
 ---
-import { whatsappLink, withBase } from '../config';
+import { INSTAGRAM_DM_LINK, withBase } from '../config';
 
-const waHref = whatsappLink('Hi Aarvika 3D — I have something custom I want printed.');
+const igMessage = 'Hi Aarvika 3D — I have something custom I want printed.';
 ---
 
 <section class="border-t border-line">
@@ -22,12 +22,13 @@ const waHref = whatsappLink('Hi Aarvika 3D — I have something custom I want pr
         Get a quote
       </a>
       <a
-        href={waHref}
+        href={INSTAGRAM_DM_LINK}
         target="_blank"
         rel="noopener noreferrer"
+        data-ig-message={igMessage}
         class="inline-flex items-center rounded-full border border-line-2 px-5 py-3 text-sm font-medium text-bone transition-colors hover:border-dust"
       >
-        Start on WhatsApp
+        Start on Instagram
       </a>
     </div>
   </div>

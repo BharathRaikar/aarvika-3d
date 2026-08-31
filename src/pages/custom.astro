@@ -2,14 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { whatsappLink } from '../config';
+import { INSTAGRAM_DM_LINK } from '../config';
 
-const waHref = whatsappLink("Hi Aarvika 3D — I'd like to start a custom order.");
+const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
 ---
 
 <Layout
   title="Custom orders — Aarvika 3D"
-  description="Send an STL, a photo, or just describe what you want made. We'll quote a price and timeline on WhatsApp."
+  description="Send an STL, a photo, or just describe what you want made. We'll quote a price and timeline on Instagram."
 >
   <Header />
   <main>
@@ -38,12 +38,13 @@ const waHref = whatsappLink("Hi Aarvika 3D — I'd like to start a custom order.
           </li>
         </ol>
         <a
-          href={waHref}
+          href={INSTAGRAM_DM_LINK}
           target="_blank"
           rel="noopener noreferrer"
+          data-ig-message={igMessage}
           class="mt-8 inline-flex items-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
         >
-          Start on WhatsApp
+          Start on Instagram
         </a>
       </div>
 
@@ -64,11 +65,11 @@ const waHref = whatsappLink("Hi Aarvika 3D — I'd like to start a custom order.
           </div>
           <div>
             <label for="cw" class="mb-1.5 block font-mono text-[10.5px] uppercase tracking-[0.13em] text-dust-2">
-              WhatsApp number
+              Phone number <span class="normal-case text-dust-2">(optional)</span>
             </label>
             <input
               id="cw"
-              name="whatsapp"
+              name="phone"
               type="tel"
               placeholder="+91 98765 43210"
               class="w-full rounded-lg border border-line-2 bg-ink px-4 py-2.5 text-bone placeholder:text-dust-2 focus-visible:border-coral"
@@ -87,7 +88,7 @@ const waHref = whatsappLink("Hi Aarvika 3D — I'd like to start a custom order.
             ></textarea>
           </div>
           <p id="form-error" class="hidden text-sm text-coral">
-            Add your number and a short description first.
+            Add a short description first.
           </p>
           <button
             type="submit"
@@ -103,25 +104,37 @@ const waHref = whatsappLink("Hi Aarvika 3D — I'd like to start a custom order.
 </Layout>
 
 <script>
-  import { WHATSAPP, customMessage } from '../config';
+  import { INSTAGRAM_DM_LINK, customMessage, copyToClipboard } from '../config';
 
   const form = document.getElementById('custom-form') as HTMLFormElement;
   const error = document.getElementById('form-error');
+  const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const whatsapp = (form.elements.namedItem('whatsapp') as HTMLInputElement).value.trim();
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value.trim();
     const description = (form.elements.namedItem('description') as HTMLTextAreaElement).value.trim();
     const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
 
-    if (!whatsapp || !description) {
+    if (!description) {
       error?.classList.remove('hidden');
       return;
     }
     error?.classList.add('hidden');
 
-    const message = customMessage(name, description);
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`, '_blank');
+    const message = customMessage(name, description, phone);
+    const copied = await copyToClipboard(message);
+    window.open(INSTAGRAM_DM_LINK, '_blank', 'noopener,noreferrer');
+
+    if (copied && submitButton) {
+      const original = submitButton.textContent;
+      submitButton.textContent = 'Copied — paste it in Instagram';
+      setTimeout(() => {
+        submitButton.textContent = original;
+      }, 2500);
+    } else if (!copied) {
+      window.prompt('Copy this message, then paste it in the Instagram chat that just opened:', message);
+    }
   });
 
   ['cw', 'cd'].forEach((id) => {

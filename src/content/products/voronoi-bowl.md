@@ -9,7 +9,7 @@ size: "180 mm diameter × 80 mm"
 printTime: "~7 h"
 description: "An organic open lattice bowl. Decorative, for fruit, keys, or yarn. Not food-safe or dishwasher-safe."
 options:
-  - "Filament colour — confirm on WhatsApp"
+  - "Filament colour — confirm on Instagram DM"
   - "Size"
 featured: true
 order: 1

@@ -34,3 +34,33 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <slot />
   </body>
 </html>
+
+<script>
+  import { copyToClipboard } from '../config';
+
+  // Delegated site-wide: any element with data-ig-message copies that text
+  // to the clipboard on click, then lets its normal href open the Instagram
+  // DM thread in a new tab. Instagram has no way to pre-fill the message
+  // itself, so this is the closest equivalent to WhatsApp's wa.me?text=.
+  document.addEventListener('click', async (e) => {
+    const el = (e.target as HTMLElement)?.closest<HTMLElement>('[data-ig-message]');
+    if (!el) return;
+    const message = el.dataset.igMessage;
+    if (!message) return;
+
+    const copied = await copyToClipboard(message);
+    const original = el.textContent;
+
+    if (copied) {
+      el.textContent = 'Copied — paste it in Instagram';
+      setTimeout(() => {
+        el.textContent = original;
+      }, 2500);
+    } else {
+      // Clipboard access denied (older browser, blocked permission, etc.) —
+      // fall back to showing the message so it can be copied by hand.
+      window.prompt('Copy this message, then paste it in the Instagram chat that just opened:', message);
+    }
+  });
+</script>
+

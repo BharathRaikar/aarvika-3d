@@ -9,7 +9,7 @@ size: "150 mm diameter"
 printTime: "~4 h"
 description: "A ridged scallop shell dish for rings, earrings, and keys. Sits on a bedside table or bathroom shelf."
 options:
-  - "Filament colour — confirm on WhatsApp"
+  - "Filament colour — confirm on Instagram DM"
 featured: false
 order: 2
 ---

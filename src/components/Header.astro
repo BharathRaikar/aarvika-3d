@@ -1,13 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { whatsappLink, withBase } from '../config';
+import { INSTAGRAM_DM_LINK, withBase } from '../config';
 
-const waHref = whatsappLink("Hi Aarvika 3D — I have a question about your prints.");
+const igMessage = "Hi Aarvika 3D — I have a question about your prints.";
 ---
 
 <div class="bg-coral text-coral-ink text-center text-[11px] font-mono uppercase tracking-[0.14em] py-2 px-4">
-  Prototype — prices, photos and the WhatsApp number are placeholders
+  Prototype — prices and photos are placeholders
 </div>
 
 <header class="sticky top-0 z-50 bg-ink/90 backdrop-blur border-b border-line">
@@ -24,12 +24,13 @@ const waHref = whatsappLink("Hi Aarvika 3D — I have a question about your prin
     </div>
     <div class="flex items-center gap-2">
       <a
-        href={waHref}
+        href={INSTAGRAM_DM_LINK}
         target="_blank"
         rel="noopener noreferrer"
+        data-ig-message={igMessage}
         class="inline-flex items-center rounded-full bg-coral px-4 py-2 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
       >
-        WhatsApp
+        Message us
       </a>
       <details class="relative md:hidden">
         <summary

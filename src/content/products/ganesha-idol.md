@@ -9,7 +9,7 @@ size: "80 mm tall"
 printTime: "~4 h"
 description: "A seated Ganesha with fine detail in the crown and hands. Desk, dashboard, or pooja shelf scale."
 options:
-  - "Filament colour — confirm on WhatsApp"
+  - "Filament colour — confirm on Instagram DM"
   - "Size"
 featured: false
 order: 1

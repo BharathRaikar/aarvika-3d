@@ -9,7 +9,7 @@ size: "200 × 130 × 90 mm"
 printTime: "~10 h"
 description: "Four compartments wrapped in a sculpted ribbon bow. Holds pens, brushes, and clutter without looking like storage. Coquette-leaning desk decor."
 options:
-  - "Filament colour — confirm on WhatsApp"
+  - "Filament colour — confirm on Instagram DM"
 featured: true
 order: 2
 ---

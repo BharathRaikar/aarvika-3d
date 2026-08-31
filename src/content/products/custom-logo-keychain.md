@@ -11,7 +11,7 @@ description: "Two-tone keychains printed from your own logo, initial, or symbol.
 options:
   - "Two colours of your choice"
   - "Any logo or initial"
-  - "Bulk pricing: ₹399 for three — ask on WhatsApp"
+  - "Bulk pricing: ₹399 for three — ask on Instagram DM"
 featured: false
 order: 4
 ---

@@ -9,7 +9,7 @@ size: "700 × 600 mm assembled"
 printTime: "~20 h"
 description: "Six triangular panels — mountains, pines, sun, lake — that arrange into a hexagon. Lightweight enough to hang with adhesive strips. Rearrangeable."
 options:
-  - "Filament colour — confirm on WhatsApp"
+  - "Filament colour — confirm on Instagram DM"
   - "Individual panels sold separately (₹299 each)"
 featured: true
 order: 1

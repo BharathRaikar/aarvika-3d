@@ -1,7 +1,7 @@
 ---
-import { whatsappLink, withBase } from '../config';
+import { INSTAGRAM_DM_LINK, INSTAGRAM_PROFILE_LINK, withBase } from '../config';
 
-const waHref = whatsappLink('Hi Aarvika 3D — I have a question.');
+const igMessage = 'Hi Aarvika 3D — I have a question.';
 const year = new Date().getFullYear();
 ---
 
@@ -26,8 +26,8 @@ const year = new Date().getFullYear();
     <div>
       <h4 class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-dust-2">Get in touch</h4>
       <ul class="mt-3 space-y-2 text-sm text-dust">
-        <li><a href={waHref} target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">WhatsApp</a></li>
-        <li><a href="https://www.instagram.com/aarvika3d" target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">Instagram</a></li>
+        <li><a href={INSTAGRAM_DM_LINK} target="_blank" rel="noopener noreferrer" data-ig-message={igMessage} class="hover:text-bone transition-colors">Message us</a></li>
+        <li><a href={INSTAGRAM_PROFILE_LINK} target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">Instagram</a></li>
         <li><a href="mailto:aarvika3d@gmail.com" class="hover:text-bone transition-colors">aarvika3d@gmail.com</a></li>
       </ul>
     </div>
