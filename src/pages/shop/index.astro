@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProductCard from '../../components/ProductCard.astro';
+
+const CATEGORIES: { value: string; label: string }[] = [
+  { value: 'all', label: 'Everything' },
+  { value: 'wall', label: 'Wall art' },
+  { value: 'light', label: 'Lamps' },
+  { value: 'desk', label: 'Desk' },
+  { value: 'home', label: 'Home' },
+  { value: 'fig', label: 'Figurines' },
+];
+
+const allProducts = (await getCollection('products')).sort((a, b) => {
+  if (a.data.category === b.data.category) return a.data.order - b.data.order;
+  return a.data.category.localeCompare(b.data.category);
+});
+---
+
+<Layout
+  title="Shop — Aarvika 3D"
+  description="Made-to-order 3D printed lamps, wall art, desk pieces and figurines. Printed in Bengaluru, ordered on WhatsApp."
+>
+  <Header />
+  <main>
+    <div class="max-w-6xl mx-auto px-5 py-12 md:py-16">
+      <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-coral">The shop</p>
+      <h1 class="mt-3 font-display text-3xl font-medium text-bone md:text-4xl">Made recently</h1>
+      <p class="mt-3 max-w-lg text-dust">
+        Everything here has come off our printer. Tap anything to see the details.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter by category">
+        {
+          CATEGORIES.map((cat) => (
+            <button
+              type="button"
+              class="chip rounded-full border border-line-2 px-4 py-2 text-sm text-dust transition-colors aria-pressed:border-coral aria-pressed:bg-coral aria-pressed:text-coral-ink aria-pressed:hover:bg-coral-dp hover:border-dust"
+              data-filter={cat.value}
+              aria-pressed={cat.value === 'all'}
+            >
+              {cat.label}
+            </button>
+          ))
+        }
+      </div>
+
+      <div id="grid" class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {
+          allProducts.map((product) => (
+            <div class="grid-item" data-category={product.data.category}>
+              <ProductCard product={product} />
+            </div>
+          ))
+        }
+      </div>
+
+      <p id="empty-state" class="mt-10 hidden text-center text-dust">
+        Nothing in this category yet — ask us on WhatsApp, we might still be able to make it.
+      </p>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const items = document.querySelectorAll<HTMLElement>('.grid-item');
+  const emptyState = document.getElementById('empty-state');
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.setAttribute('aria-pressed', 'false'));
+      chip.setAttribute('aria-pressed', 'true');
+
+      const filter = chip.dataset.filter;
+      let visibleCount = 0;
+      items.forEach((item) => {
+        const show = filter === 'all' || item.dataset.category === filter;
+        item.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+      });
+      emptyState?.classList.toggle('hidden', visibleCount > 0);
+    });
+  });
+</script>

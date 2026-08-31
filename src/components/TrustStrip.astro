@@ -1,0 +1,21 @@
+---
+const items = [
+  { title: 'Ships across India', detail: 'Dispatched from Bengaluru' },
+  { title: 'Plant-based PLA', detail: 'Not ordinary plastic' },
+  { title: 'Any colour you like', detail: 'Confirmed on WhatsApp' },
+  { title: 'Made to order', detail: '3–5 working days' },
+];
+---
+
+<div class="border-y border-line bg-ink-2">
+  <div class="max-w-6xl mx-auto grid grid-cols-2 gap-6 px-5 py-8 text-sm md:grid-cols-4">
+    {
+      items.map((item) => (
+        <div>
+          <p class="font-medium text-bone">{item.title}</p>
+          <p class="text-dust-2">{item.detail}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/products/mountain-hexagon-set.jpg';
+---
+
+<div class="layer-lines">
+  <div class="max-w-6xl mx-auto grid gap-10 px-5 py-16 md:grid-cols-2 md:items-center md:py-24">
+    <div>
+      <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-coral">
+        A small workshop in Bengaluru
+      </p>
+      <h1 class="mt-4 font-display text-4xl font-medium leading-tight text-bone md:text-5xl">
+        We print it,<br />then we <em class="not-italic text-coral">ship it</em>.
+      </h1>
+      <p class="mt-5 max-w-md text-dust">
+        One printer, five people, and a lot of failed first layers. Nothing sits
+        in a warehouse — every piece is made after you order it.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="/shop"
+          class="inline-flex items-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
+        >
+          Browse the shop
+        </a>
+        <a
+          href="/custom"
+          class="inline-flex items-center rounded-full border border-line-2 px-5 py-3 text-sm font-medium text-bone transition-colors hover:border-dust"
+        >
+          Get something custom
+        </a>
+      </div>
+    </div>
+    <div class="relative">
+      <div class="overflow-hidden rounded-xl border border-line bg-ink-3">
+        <Image
+          src={heroImage}
+          alt="Mountain hexagon wall art, six matte black triangular panels arranged into a hexagon"
+          widths={[400, 700, 1000]}
+          sizes="(min-width: 768px) 500px, 100vw"
+          loading="eager"
+          class="h-full w-full object-cover"
+        />
+      </div>
+      <p class="absolute bottom-3 left-3 rounded-full bg-ink/90 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.13em] text-dust">
+        <span class="text-bone">20 h</span> on the printer · matte black PLA
+      </p>
+    </div>
+  </div>
+</div>

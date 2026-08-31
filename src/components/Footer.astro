@@ -1,0 +1,41 @@
+---
+import { whatsappLink } from '../config';
+
+const waHref = whatsappLink('Hi Aarvika 3D — I have a question.');
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line">
+  <div class="max-w-6xl mx-auto grid gap-8 px-5 py-12 md:grid-cols-3">
+    <div>
+      <p class="font-display font-medium text-bone">Aarvika 3D</p>
+      <p class="mt-2 max-w-xs text-sm text-dust-2">
+        Made-to-order 3D printed lamps, wall art, desk pieces and figurines.
+        Printed in Bengaluru.
+      </p>
+    </div>
+    <div>
+      <h4 class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-dust-2">Shop</h4>
+      <ul class="mt-3 space-y-2 text-sm text-dust">
+        <li><a href="/shop" class="hover:text-bone transition-colors">Wall art</a></li>
+        <li><a href="/shop" class="hover:text-bone transition-colors">Lamps</a></li>
+        <li><a href="/shop" class="hover:text-bone transition-colors">Desk</a></li>
+        <li><a href="/shop" class="hover:text-bone transition-colors">Figurines</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-dust-2">Get in touch</h4>
+      <ul class="mt-3 space-y-2 text-sm text-dust">
+        <li><a href={waHref} target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/aarvika3d" target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">Instagram</a></li>
+        <li><a href="mailto:aarvika3d@gmail.com" class="hover:text-bone transition-colors">aarvika3d@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-line">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2 px-5 py-4 text-xs text-dust-2">
+      <span>© {year} Aarvika 3D</span>
+      <span class="font-mono">Prototype build</span>
+    </div>
+  </div>
+</footer>
