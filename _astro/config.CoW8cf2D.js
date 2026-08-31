@@ -1,0 +1,1 @@
+const o="aarvika3d",c=`https://ig.me/m/${o}`;function i(t,n,a){const e=t?`Name: ${t}. `:"",r=a?`Phone: ${a}. `:"";return`Hi Aarvika 3D — custom enquiry. ${e}${r}${n}`}async function s(t){try{return await navigator.clipboard.writeText(t),!0}catch{return!1}}export{c as I,i as a,s as c};
