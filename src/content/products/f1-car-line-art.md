@@ -3,7 +3,7 @@ name: "F1 Car Line Art"
 price: 599
 category: wall
 images:
-  - ../../assets/products/wall-art-lineart.jpg
+  - ../../assets/products/f1-car-line-art.jpg
 material: "Matte black PLA"
 size: "400 × 100 mm"
 printTime: "~4 h"

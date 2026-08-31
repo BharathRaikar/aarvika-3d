@@ -3,7 +3,7 @@ name: "Mountain & Waterfall Diamond Panel"
 price: 649
 category: wall
 images:
-  - ../../assets/products/wall-art-lineart.jpg
+  - ../../assets/products/mountain-waterfall-diamond-panel.jpg
 material: "Matte black PLA"
 size: "250 × 400 mm"
 printTime: "~6 h"

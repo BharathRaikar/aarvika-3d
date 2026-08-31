@@ -3,7 +3,7 @@ name: "Baby Elephant Figurine"
 price: 399
 category: fig
 images:
-  - ../../assets/products/figurines-group.jpg
+  - ../../assets/products/baby-elephant-figurine.jpg
 material: "White PLA"
 size: "80 mm tall"
 printTime: "~3 h"

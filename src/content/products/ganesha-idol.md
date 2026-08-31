@@ -3,7 +3,7 @@ name: "Ganesha Idol"
 price: 499
 category: fig
 images:
-  - ../../assets/products/figurines-group.jpg
+  - ../../assets/products/ganesha-idol.jpg
 material: "White PLA"
 size: "80 mm tall"
 printTime: "~4 h"

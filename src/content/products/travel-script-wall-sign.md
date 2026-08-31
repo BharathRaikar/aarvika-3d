@@ -3,7 +3,7 @@ name: 'Travel Script Wall Sign'
 price: 499
 category: wall
 images:
-  - ../../assets/products/wall-art-lineart.jpg
+  - ../../assets/products/travel-script-wall-sign.jpg
 material: "Matte black PLA"
 size: "400 × 150 mm"
 printTime: "~3 h"

@@ -3,7 +3,7 @@ name: "Chibi Ganesha"
 price: 549
 category: fig
 images:
-  - ../../assets/products/figurines-group.jpg
+  - ../../assets/products/chibi-ganesha.jpg
 material: "White PLA"
 size: "90 mm tall"
 printTime: "~5 h"
