@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: 'How long until it arrives?',
+    a: "We print after you order, so allow 3–5 working days to make it, plus shipping. Larger pieces like the hexagon wall art take longer — we'll tell you the real number on WhatsApp before you pay.",
+  },
+  {
+    q: 'What colours are available?',
+    a: "Ask on WhatsApp before you pay. We're still confirming what we can keep in stock versus what needs a couple of extra days to order in, so we'd rather tell you straight than promise a colour we can't get.",
+  },
+  {
+    q: 'Is it strong? Will it survive a Bengaluru summer?',
+    a: "PLA is rigid and holds up fine indoors. It does soften above roughly 55°C, so don't leave a piece on a car dashboard in direct sun. That's the one real limitation.",
+  },
+  {
+    q: 'Can I use the bowl and dish for food?',
+    a: "No. 3D printed surfaces have fine layer grooves that trap bacteria, and they aren't dishwasher-safe. Treat them as decorative.",
+  },
+  {
+    q: 'Do you take returns?',
+    a: "Each piece is made for your order, so we don't take general returns. If it arrives damaged or wrong, send us a photo and we'll reprint it.",
+  },
+  {
+    q: 'Can you print something from my own file?',
+    a: "Yes — send an STL or 3MF on WhatsApp and we'll quote. We'll tell you honestly if a model won't print well before taking your money.",
+  },
+];
+---
+
+<Layout
+  title="FAQ — Aarvika 3D"
+  description="Turnaround, colours, care, returns, and custom files — answered before you order."
+>
+  <Header />
+  <main>
+    <div class="max-w-2xl mx-auto px-5 py-12 md:py-16">
+      <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-coral">Questions</p>
+      <h1 class="mt-3 font-display text-3xl font-medium text-bone md:text-4xl">Before you order</h1>
+
+      <div class="mt-8 divide-y divide-line border-y border-line">
+        {
+          faqs.map((item, i) => (
+            <details class="group py-4" open={i === 0}>
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-bone marker:content-none">
+                {item.q}
+                <span class="shrink-0 text-dust transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="mt-3 text-dust">{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

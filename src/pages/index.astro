@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import ProductCard from '../components/ProductCard.astro';
+import CustomTeaser from '../components/CustomTeaser.astro';
+import Footer from '../components/Footer.astro';
+
+const allProducts = await getCollection('products');
+const featured = allProducts
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="Aarvika 3D — made-to-order 3D printed decor, Bengaluru"
+  description="A small 3D printing workshop in Bengaluru. Made-to-order lamps, wall art, desk pieces and figurines, ordered on WhatsApp."
+>
+  <Header />
+  <main>
+    <Hero />
+    <TrustStrip />
+
+    <section id="shop" class="border-t border-line">
+      <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+        <div class="max-w-lg">
+          <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-coral">The shop</p>
+          <h2 class="mt-3 font-display text-2xl font-medium text-bone md:text-3xl">Made recently</h2>
+          <p class="mt-3 text-dust">
+            Everything here has come off our printer. Tap anything to see the details.
+          </p>
+        </div>
+        <div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+          {featured.map((product) => <ProductCard product={product} />)}
+        </div>
+        <div class="mt-10 text-center">
+          <a
+            href="/shop"
+            class="inline-flex items-center rounded-full border border-line-2 px-5 py-3 text-sm font-medium text-bone transition-colors hover:border-dust"
+          >
+            See the full shop
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <CustomTeaser />
+  </main>
+  <Footer />
+</Layout>

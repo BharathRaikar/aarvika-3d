@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/instrument-sans";
+@import "@fontsource-variable/jetbrains-mono";
+
+@theme {
+  --color-ink: #131210;
+  --color-ink-2: #1b1917;
+  --color-ink-3: #242120;
+  --color-line: #2e2a27;
+  --color-line-2: #3b3633;
+  --color-coral: #e09080;
+  --color-coral-dp: #c56f5c;
+  --color-coral-ink: #38150c;
+  --color-bone: #efeae3;
+  --color-dust: #948c83;
+  --color-dust-2: #6b655e;
+
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-coral);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.layer-lines {
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(239, 234, 227, 0.05) 0 1px,
+    transparent 1px 7px
+  );
+}
