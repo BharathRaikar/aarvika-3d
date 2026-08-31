@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { whatsappLink } from '../config';
+import { whatsappLink, withBase } from '../config';
 
 const waHref = whatsappLink("Hi Aarvika 3D — I have a question about your prints.");
 ---
@@ -12,15 +12,15 @@ const waHref = whatsappLink("Hi Aarvika 3D — I have a question about your prin
 
 <header class="sticky top-0 z-50 bg-ink/90 backdrop-blur border-b border-line">
   <nav class="max-w-6xl mx-auto flex items-center justify-between gap-4 px-5 py-3">
-    <a href="/" class="flex items-center gap-2 shrink-0">
+    <a href={withBase('')} class="flex items-center gap-2 shrink-0">
       <Image src={logo} alt="Aarvika 3D" width={32} height={32} class="h-8 w-8" />
       <span class="font-display font-medium text-bone">Aarvika 3D</span>
     </a>
     <div class="hidden md:flex items-center gap-6 text-sm text-dust">
-      <a href="/shop" class="hover:text-bone transition-colors">Shop</a>
-      <a href="/custom" class="hover:text-bone transition-colors">Custom</a>
-      <a href="/about" class="hover:text-bone transition-colors">About</a>
-      <a href="/faq" class="hover:text-bone transition-colors">FAQ</a>
+      <a href={withBase('shop')} class="hover:text-bone transition-colors">Shop</a>
+      <a href={withBase('custom')} class="hover:text-bone transition-colors">Custom</a>
+      <a href={withBase('about')} class="hover:text-bone transition-colors">About</a>
+      <a href={withBase('faq')} class="hover:text-bone transition-colors">FAQ</a>
     </div>
     <div class="flex items-center gap-2">
       <a
@@ -41,10 +41,10 @@ const waHref = whatsappLink("Hi Aarvika 3D — I have a question about your prin
           </svg>
         </summary>
         <div class="absolute right-0 top-full mt-2 w-40 rounded-xl border border-line bg-ink-2 p-1.5 text-sm">
-          <a href="/shop" class="block rounded-lg px-3 py-2 text-dust hover:bg-ink-3 hover:text-bone">Shop</a>
-          <a href="/custom" class="block rounded-lg px-3 py-2 text-dust hover:bg-ink-3 hover:text-bone">Custom</a>
-          <a href="/about" class="block rounded-lg px-3 py-2 text-dust hover:bg-ink-3 hover:text-bone">About</a>
-          <a href="/faq" class="block rounded-lg px-3 py-2 text-dust hover:bg-ink-3 hover:text-bone">FAQ</a>
+          <a href={withBase('shop')} class="block rounded-lg px-3 py-2 text-dust hover:bg-ink-3 hover:text-bone">Shop</a>
+          <a href={withBase('custom')} class="block rounded-lg px-3 py-2 text-dust hover:bg-ink-3 hover:text-bone">Custom</a>
+          <a href={withBase('about')} class="block rounded-lg px-3 py-2 text-dust hover:bg-ink-3 hover:text-bone">About</a>
+          <a href={withBase('faq')} class="block rounded-lg px-3 py-2 text-dust hover:bg-ink-3 hover:text-bone">FAQ</a>
         </div>
       </details>
     </div>

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import heroImage from '../assets/products/mountain-hexagon-set.jpg';
+import { withBase } from '../config';
 ---
 
 <div class="layer-lines">
@@ -18,13 +19,13 @@ import heroImage from '../assets/products/mountain-hexagon-set.jpg';
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a
-          href="/shop"
+          href={withBase('shop')}
           class="inline-flex items-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
         >
           Browse the shop
         </a>
         <a
-          href="/custom"
+          href={withBase('custom')}
           class="inline-flex items-center rounded-full border border-line-2 px-5 py-3 text-sm font-medium text-bone transition-colors hover:border-dust"
         >
           Get something custom

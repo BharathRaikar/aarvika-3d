@@ -13,3 +13,11 @@ export function productMessage(name: string, price: number): string {
 export function customMessage(name: string, description: string): string {
   return `Hi Aarvika 3D — custom enquiry. ${name ? `Name: ${name}. ` : ''}${description}`;
 }
+
+// Prefixes an internal path with the configured base (see astro.config.mjs).
+// Needed because GitHub Pages serves this as a project site under /aarvika-3d/
+// rather than at the domain root the real Cloudflare Pages deploy will use.
+export function withBase(path: string): string {
+  const base = import.meta.env.BASE_URL;
+  return base.replace(/\/$/, '') + '/' + path.replace(/^\//, '');
+}

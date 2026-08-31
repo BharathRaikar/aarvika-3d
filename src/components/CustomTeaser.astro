@@ -1,5 +1,5 @@
 ---
-import { whatsappLink } from '../config';
+import { whatsappLink, withBase } from '../config';
 
 const waHref = whatsappLink('Hi Aarvika 3D — I have something custom I want printed.');
 ---
@@ -16,7 +16,7 @@ const waHref = whatsappLink('Hi Aarvika 3D — I have something custom I want pr
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
       <a
-        href="/custom"
+        href={withBase('custom')}
         class="inline-flex items-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
       >
         Get a quote

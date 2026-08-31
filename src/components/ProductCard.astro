@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../config';
 
 interface Props {
   product: CollectionEntry<'products'>;
@@ -11,7 +12,7 @@ const { name, price, images, material, printTime } = product.data;
 ---
 
 <a
-  href={`/shop/${product.id}`}
+  href={withBase(`shop/${product.id}`)}
   class="group block overflow-hidden rounded-xl border border-line bg-ink-2 transition-colors hover:border-line-2"
 >
   <div class="aspect-square overflow-hidden bg-ink-3">
