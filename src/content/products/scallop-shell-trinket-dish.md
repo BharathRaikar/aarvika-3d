@@ -4,6 +4,7 @@ price: 449
 category: home
 images:
   - ../../assets/products/scallop-trinket-dish.jpg
+  - ../../assets/products/scallop-trinket-dish-2.jpg
 material: "White PLA"
 size: "150 mm diameter"
 printTime: "~4 h"
