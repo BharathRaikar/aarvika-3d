@@ -1,6 +1,6 @@
 ---
 name: "Desk Organiser Tray"
-price: 899
+price: 1299
 category: desk
 images:
   - ../../assets/products/desk-organiser-tray-1.jpg

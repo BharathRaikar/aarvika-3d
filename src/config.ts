@@ -17,6 +17,15 @@ export function customMessage(name: string, description: string, phone?: string)
   return `Hi Aarvika 3D — custom enquiry. ${nameLine}${phoneLine}${description}`;
 }
 
+// Email is the second ordering channel alongside Instagram DM (see above).
+// A WhatsApp channel can be slotted in later the same way: a wa.me link built
+// from the same productMessage()/customMessage() text.
+export const ORDER_EMAIL = 'aarvika3d@gmail.com';
+
+export function buildMailtoLink(subject: string, body: string): string {
+  return `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 // Client-side only: copies text to the clipboard, silently no-opping if the
 // browser denies it (still lets the DM link open either way).
 export async function copyToClipboard(text: string): Promise<boolean> {

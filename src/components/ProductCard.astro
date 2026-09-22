@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { product } = Astro.props;
-const { name, price, images, material, printTime } = product.data;
+const { name, price, images, material } = product.data;
 ---
 
 <a
@@ -27,9 +27,8 @@ const { name, price, images, material, printTime } = product.data;
   </div>
   <div class="p-4">
     <h3 class="font-display text-base font-medium text-bone">{name}</h3>
-    <div class="mt-2 flex items-center justify-between">
+    <div class="mt-2">
       <span class="text-coral font-medium">₹{price.toLocaleString('en-IN')}</span>
-      <span class="font-mono text-[10px] uppercase tracking-[0.13em] text-dust-2">{printTime}</span>
     </div>
   </div>
 </a>

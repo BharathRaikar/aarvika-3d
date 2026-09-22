@@ -90,12 +90,22 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
           <p id="form-error" class="hidden text-sm text-coral">
             Add a short description first.
           </p>
-          <button
-            type="submit"
-            class="flex w-full items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
-          >
-            Send enquiry
-          </button>
+          <div class="flex flex-wrap gap-3">
+            <button
+              type="submit"
+              class="flex flex-1 items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
+            >
+              Send enquiry
+            </button>
+            <button
+              type="button"
+              id="custom-email-btn"
+              class="flex flex-1 items-center justify-center rounded-full border border-line-2 px-5 py-3 text-sm font-medium text-bone transition-colors hover:border-dust"
+            >
+              Send by email
+            </button>
+            {/* A WhatsApp button can go here later, built the same way from customMessage(). */}
+          </div>
         </form>
       </div>
     </div>
@@ -104,17 +114,23 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
 </Layout>
 
 <script>
-  import { INSTAGRAM_DM_LINK, customMessage, copyToClipboard } from '../config';
+  import { INSTAGRAM_DM_LINK, buildMailtoLink, customMessage, copyToClipboard } from '../config';
 
   const form = document.getElementById('custom-form') as HTMLFormElement;
   const error = document.getElementById('form-error');
   const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const emailButton = document.getElementById('custom-email-btn') as HTMLButtonElement | null;
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  function readFormFields() {
     const phone = (form.elements.namedItem('phone') as HTMLInputElement).value.trim();
     const description = (form.elements.namedItem('description') as HTMLTextAreaElement).value.trim();
     const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+    return { name, phone, description };
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const { name, phone, description } = readFormFields();
 
     if (!description) {
       error?.classList.remove('hidden');
@@ -135,6 +151,19 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
     } else if (!copied) {
       window.prompt('Copy this message, then paste it in the Instagram chat that just opened:', message);
     }
+  });
+
+  emailButton?.addEventListener('click', () => {
+    const { name, phone, description } = readFormFields();
+
+    if (!description) {
+      error?.classList.remove('hidden');
+      return;
+    }
+    error?.classList.add('hidden');
+
+    const message = customMessage(name, description, phone);
+    window.location.href = buildMailtoLink('Custom enquiry', message);
   });
 
   ['cw', 'cd'].forEach((id) => {

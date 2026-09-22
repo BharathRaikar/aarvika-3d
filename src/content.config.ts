@@ -11,7 +11,7 @@ const products = defineCollection({
       images: z.array(image()),
       material: z.string(),
       size: z.string(),
-      printTime: z.string(),
+      printTime: z.string().optional(),
       description: z.string(),
       options: z.array(z.string()),
       featured: z.boolean(),
