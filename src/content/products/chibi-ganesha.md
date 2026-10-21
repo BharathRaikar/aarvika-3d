@@ -1,11 +1,11 @@
 ---
 name: "Chibi Ganesha"
-price: 549
+price: 249
 category: fig
 images:
   - ../../assets/products/chibi-ganesha.jpg
 material: "White PLA"
-size: "90 mm tall"
+size: "90 mm tall (approx. 3.5 in · palm-sized desk piece)"
 printTime: "~5 h"
 description: "A rounded, cartoon-styled Ganesha seated on a cushion with a modak bundle. Softer and more playful than the traditional idol."
 options:
