@@ -1,6 +1,6 @@
 ---
 name: "F1 Car Line Art"
-price: 599
+price: 499
 category: wall
 images:
   - ../../assets/products/f1-car-line-art.jpg

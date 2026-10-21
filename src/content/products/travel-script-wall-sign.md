@@ -1,6 +1,6 @@
 ---
 name: 'Travel Script Wall Sign'
-price: 499
+price: 399
 category: wall
 images:
   - ../../assets/products/travel-script-wall-sign.jpg
