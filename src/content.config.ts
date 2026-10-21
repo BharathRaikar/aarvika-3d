@@ -14,6 +14,10 @@ const products = defineCollection({
       printTime: z.string().optional(),
       description: z.string(),
       options: z.array(z.string()),
+      // When set, the product page shows a text box (e.g. a name to print)
+      // whose value is added to the order message.
+      customInputLabel: z.string().optional(),
+      customInputPlaceholder: z.string().optional(),
       featured: z.boolean(),
       order: z.number(),
     }),

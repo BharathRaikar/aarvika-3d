@@ -1,6 +1,6 @@
 ---
 name: "Mountain & Waterfall Diamond Panel"
-price: 699
+price: 499
 category: wall
 images:
   - ../../assets/products/mountain-waterfall-diamond-panel.jpg

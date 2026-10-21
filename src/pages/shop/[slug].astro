@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { INSTAGRAM_DM_LINK, ORDER_EMAIL, buildMailtoLink, productMessage, withBase } from '../../config';
+import { INSTAGRAM_DM_LINK, ORDER_EMAIL, buildMailtoLink, productEmailSubject, productMessage, withBase } from '../../config';
 
 export async function getStaticPaths() {
   const products = await getCollection('products');
@@ -15,7 +15,8 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
-const { name, price, category, images, material, size, description, options } = product.data;
+const { name, price, category, images, material, size, description, options, customInputLabel, customInputPlaceholder } =
+  product.data;
 
 const CATN: Record<string, string> = {
   wall: 'Wall art',
@@ -26,7 +27,7 @@ const CATN: Record<string, string> = {
 };
 
 const igMessage = productMessage(name, price);
-const emailLink = buildMailtoLink(`Order: ${name}`, productMessage(name, price));
+const emailLink = buildMailtoLink(productEmailSubject(name), productMessage(name, price));
 
 const orderSteps = [
   { title: 'Choose & Message', body: 'Send us the item and your preferred colour on Instagram DM or Email.' },
@@ -120,8 +121,29 @@ const jsonLd = {
             )
           }
 
+          {
+            customInputLabel && (
+              <div class="mt-6">
+                <label for="custom-input" class="mb-1.5 block font-mono text-[10.5px] uppercase tracking-[0.13em] text-coral">
+                  {customInputLabel}
+                </label>
+                <input
+                  id="custom-input"
+                  type="text"
+                  maxlength="12"
+                  autocomplete="off"
+                  placeholder={customInputPlaceholder}
+                  data-product-name={name}
+                  data-product-price={price}
+                  class="w-full rounded-lg border border-line-2 bg-ink px-3 py-2 text-sm text-bone placeholder:text-dust-2 focus-visible:border-coral"
+                />
+              </div>
+            )
+          }
+
           <div class="mt-6 flex flex-wrap gap-3">
             <a
+              id="ig-order-btn"
               href={INSTAGRAM_DM_LINK}
               target="_blank"
               rel="noopener noreferrer"
@@ -131,6 +153,7 @@ const jsonLd = {
               Order on Instagram
             </a>
             <a
+              id="email-order-btn"
               href={emailLink}
               class="flex flex-1 items-center justify-center rounded-full border border-line-2 px-5 py-3 text-sm font-medium text-bone transition-colors hover:border-dust"
             >
@@ -204,7 +227,7 @@ const jsonLd = {
 </Layout>
 
 <script>
-  import { copyToClipboard } from '../../config';
+  import { buildMailtoLink, copyToClipboard, productEmailSubject, productMessage } from '../../config';
   import { showToast } from '../../scripts/toast';
 
   const copyEmailBtn = document.getElementById('copy-email-btn') as HTMLButtonElement | null;
@@ -215,6 +238,20 @@ const jsonLd = {
     } else {
       window.prompt('Copy our email address:', email);
     }
+  });
+
+  // Products with a custom text box (e.g. a name to print): keep both order
+  // buttons' messages in sync with what's typed.
+  const customInput = document.getElementById('custom-input') as HTMLInputElement | null;
+  const igOrderBtn = document.getElementById('ig-order-btn');
+  const emailOrderBtn = document.getElementById('email-order-btn') as HTMLAnchorElement | null;
+  customInput?.addEventListener('input', () => {
+    const name = customInput.dataset.productName ?? '';
+    const price = Number(customInput.dataset.productPrice);
+    const value = customInput.value.trim() || undefined;
+    const message = productMessage(name, price, value);
+    if (igOrderBtn) igOrderBtn.dataset.igMessage = message;
+    if (emailOrderBtn) emailOrderBtn.href = buildMailtoLink(productEmailSubject(name, value), message);
   });
 
   const mainImages = document.querySelectorAll<HTMLElement>('.gallery-slide');

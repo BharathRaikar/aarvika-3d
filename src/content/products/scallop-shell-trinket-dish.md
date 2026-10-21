@@ -1,6 +1,6 @@
 ---
 name: "Scallop Shell Trinket Dish"
-price: 449
+price: 349
 category: home
 images:
   - ../../assets/products/scallop-trinket-dish.jpg

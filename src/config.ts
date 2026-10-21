@@ -7,8 +7,13 @@ export const INSTAGRAM_HANDLE = 'aarvika3d';
 export const INSTAGRAM_DM_LINK = `https://ig.me/m/${INSTAGRAM_HANDLE}`;
 export const INSTAGRAM_PROFILE_LINK = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 
-export function productMessage(name: string, price: number): string {
-  return `Hi Aarvika 3D — I'd like the ${name}, ₹${price.toLocaleString('en-IN')}. Could you confirm colour options?`;
+export function productMessage(name: string, price: number, customName?: string): string {
+  const custom = customName ? ` (Custom Name: "${customName}")` : '';
+  return `Hi Aarvika 3D — I'd like the ${name}${custom}, ₹${price.toLocaleString('en-IN')}. Could you confirm colour options?`;
+}
+
+export function productEmailSubject(name: string, customName?: string): string {
+  return customName ? `Order: ${name} — "${customName}"` : `Order: ${name}`;
 }
 
 export function customMessage(name: string, description: string, phone?: string): string {
