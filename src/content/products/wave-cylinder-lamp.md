@@ -1,6 +1,6 @@
 ---
 name: "Wave Cylinder Lamp"
-price: 1099
+price: 999
 category: light
 images:
   - ../../assets/products/wave-cylinder-tealight.jpg

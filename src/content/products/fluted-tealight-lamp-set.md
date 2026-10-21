@@ -1,6 +1,6 @@
 ---
 name: "Fluted Tealight Lamp Set"
-price: 1499
+price: 1299
 category: light
 images:
   - ../../assets/products/fluted-tealight-set-group.jpg

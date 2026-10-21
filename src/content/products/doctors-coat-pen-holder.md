@@ -1,6 +1,6 @@
 ---
 name: "Doctor's Coat Pen Holder"
-price: 799
+price: 599
 category: desk
 images:
   - ../../assets/products/doctor-coat-pen-holder.jpg

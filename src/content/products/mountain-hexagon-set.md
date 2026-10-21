@@ -1,6 +1,6 @@
 ---
 name: "Mountain Hexagon Wall Art — Set of 6"
-price: 1399
+price: 1099
 category: wall
 images:
   - ../../assets/products/mountain-hexagon-set.jpg
