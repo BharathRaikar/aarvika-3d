@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { withBase } from '../config';
+import InstagramModal from '../components/InstagramModal.astro';
 
 interface Props {
   title: string;
@@ -32,43 +33,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body class="font-body bg-ink text-bone antialiased">
     <slot />
+    <InstagramModal />
   </body>
 </html>
-
-<script>
-  import { copyToClipboard } from '../config';
-  import { showToast, IG_COPIED_TOAST } from '../scripts/toast';
-
-  // Delegated site-wide: any element with data-ig-message copies that text
-  // to the clipboard on click, then lets its normal href open the Instagram
-  // DM thread in a new tab. Instagram has no way to pre-fill the message
-  // itself, so this is the closest equivalent to WhatsApp's wa.me?text=.
-  document.addEventListener('click', async (e) => {
-    const el = (e.target as HTMLElement)?.closest<HTMLElement>('[data-ig-message]');
-    if (!el) return;
-    const message = el.dataset.igMessage;
-    if (!message) return;
-
-    const copied = await copyToClipboard(message);
-
-    if (copied) {
-      showToast(IG_COPIED_TOAST);
-      // Swap the label briefly; innerHTML (not textContent) so any icon inside
-      // the button survives, and skip if a previous click is still showing.
-      if (!el.dataset.igCopied) {
-        el.dataset.igCopied = 'true';
-        const original = el.innerHTML;
-        el.textContent = 'Copied — paste it in Instagram';
-        setTimeout(() => {
-          el.innerHTML = original;
-          delete el.dataset.igCopied;
-        }, 2500);
-      }
-    } else {
-      // Clipboard access denied (older browser, blocked permission, etc.) —
-      // fall back to showing the message so it can be copied by hand.
-      window.prompt('Copy this message, then paste it in the Instagram chat that just opened:', message);
-    }
-  });
-</script>
-

@@ -100,7 +100,7 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
                 <circle cx="12" cy="12" r="4" />
                 <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
               </svg>
-              <span data-label>Continue on Instagram DM</span>
+              <span>Continue on Instagram DM</span>
             </button>
             <button
               type="button"
@@ -123,12 +123,11 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
 </Layout>
 
 <script>
-  import { INSTAGRAM_DM_LINK, buildMailtoLink, customMessage, copyToClipboard } from '../config';
-  import { showToast, IG_COPIED_TOAST } from '../scripts/toast';
+  import { buildMailtoLink, customMessage, copyToClipboard } from '../config';
+  import { openInstagramHandoff } from '../scripts/igHandoff';
 
   const form = document.getElementById('custom-form') as HTMLFormElement;
   const error = document.getElementById('form-error');
-  const submitLabel = form?.querySelector<HTMLElement>('button[type="submit"] [data-label]');
   const emailButton = document.getElementById('custom-email-btn') as HTMLButtonElement | null;
 
   function readFormFields() {
@@ -150,22 +149,7 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
 
     const message = customMessage(name, description, phone);
     const copied = await copyToClipboard(message);
-    window.open(INSTAGRAM_DM_LINK, '_blank', 'noopener,noreferrer');
-
-    if (copied) {
-      showToast(IG_COPIED_TOAST);
-      if (submitLabel && !submitLabel.dataset.copied) {
-        submitLabel.dataset.copied = 'true';
-        const original = submitLabel.textContent;
-        submitLabel.textContent = 'Copied — paste it in Instagram';
-        setTimeout(() => {
-          submitLabel.textContent = original;
-          delete submitLabel.dataset.copied;
-        }, 2500);
-      }
-    } else {
-      window.prompt('Copy this message, then paste it in the Instagram chat that just opened:', message);
-    }
+    openInstagramHandoff(message, copied);
   });
 
   emailButton?.addEventListener('click', () => {

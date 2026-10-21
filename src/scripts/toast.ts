@@ -23,5 +23,3 @@ export function showToast(message: string, duration = 3500): void {
     toastEl?.classList.add('translate-y-4', 'opacity-0');
   }, duration);
 }
-
-export const IG_COPIED_TOAST = '✓ Message copied to clipboard! Paste it into the chat that just opened.';
