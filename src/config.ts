@@ -38,8 +38,8 @@ export async function copyToClipboard(text: string): Promise<boolean> {
 }
 
 // Prefixes an internal path with the configured base (see astro.config.mjs).
-// Needed because GitHub Pages serves this as a project site under /aarvika-3d/
-// rather than at the domain root the real Cloudflare Pages deploy will use.
+// The site now lives at the domain root, so this is a no-op, but it keeps
+// links working if the site is ever served from a sub-path again.
 export function withBase(path: string): string {
   const base = import.meta.env.BASE_URL;
   return base.replace(/\/$/, '') + '/' + path.replace(/^\//, '');
