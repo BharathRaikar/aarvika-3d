@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { INSTAGRAM_DM_LINK } from '../config';
+import { INSTAGRAM_DM_LINK, ORDER_EMAIL } from '../config';
 
 const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
 ---
@@ -93,19 +93,28 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
           <div class="flex flex-wrap gap-3">
             <button
               type="submit"
-              class="flex flex-1 items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
+              class="flex flex-1 items-center justify-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
             >
-              Send enquiry
+              <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
+              </svg>
+              <span data-label>Continue on Instagram DM</span>
             </button>
             <button
               type="button"
               id="custom-email-btn"
               class="flex flex-1 items-center justify-center rounded-full border border-line-2 px-5 py-3 text-sm font-medium text-bone transition-colors hover:border-dust"
             >
-              Send by email
+              Send via Email
             </button>
             {/* A WhatsApp button can go here later, built the same way from customMessage(). */}
           </div>
+          <p class="text-xs text-dust-2">
+            Instagram opens with your enquiry copied to clipboard — just paste and send. Or email us
+            directly at <a href={`mailto:${ORDER_EMAIL}`} class="text-dust underline underline-offset-2 hover:text-bone">{ORDER_EMAIL}</a>.
+          </p>
         </form>
       </div>
     </div>
@@ -115,10 +124,11 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
 
 <script>
   import { INSTAGRAM_DM_LINK, buildMailtoLink, customMessage, copyToClipboard } from '../config';
+  import { showToast, IG_COPIED_TOAST } from '../scripts/toast';
 
   const form = document.getElementById('custom-form') as HTMLFormElement;
   const error = document.getElementById('form-error');
-  const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const submitLabel = form?.querySelector<HTMLElement>('button[type="submit"] [data-label]');
   const emailButton = document.getElementById('custom-email-btn') as HTMLButtonElement | null;
 
   function readFormFields() {
@@ -142,13 +152,18 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
     const copied = await copyToClipboard(message);
     window.open(INSTAGRAM_DM_LINK, '_blank', 'noopener,noreferrer');
 
-    if (copied && submitButton) {
-      const original = submitButton.textContent;
-      submitButton.textContent = 'Copied — paste it in Instagram';
-      setTimeout(() => {
-        submitButton.textContent = original;
-      }, 2500);
-    } else if (!copied) {
+    if (copied) {
+      showToast(IG_COPIED_TOAST);
+      if (submitLabel && !submitLabel.dataset.copied) {
+        submitLabel.dataset.copied = 'true';
+        const original = submitLabel.textContent;
+        submitLabel.textContent = 'Copied — paste it in Instagram';
+        setTimeout(() => {
+          submitLabel.textContent = original;
+          delete submitLabel.dataset.copied;
+        }, 2500);
+      }
+    } else {
       window.prompt('Copy this message, then paste it in the Instagram chat that just opened:', message);
     }
   });

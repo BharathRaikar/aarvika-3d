@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { INSTAGRAM_DM_LINK, buildMailtoLink, productMessage, withBase } from '../../config';
+import { INSTAGRAM_DM_LINK, ORDER_EMAIL, buildMailtoLink, productMessage, withBase } from '../../config';
 
 export async function getStaticPaths() {
   const products = await getCollection('products');
@@ -27,6 +27,12 @@ const CATN: Record<string, string> = {
 
 const igMessage = productMessage(name, price);
 const emailLink = buildMailtoLink(`Order: ${name}`, productMessage(name, price));
+
+const orderSteps = [
+  { title: 'Choose & Message', body: 'Send us the item and your preferred colour on Instagram DM or Email.' },
+  { title: 'Confirm & UPI', body: 'We confirm filament availability and share a UPI QR code.' },
+  { title: 'Print & Ship', body: 'We print your piece, send a photo before dispatch, and ship it out in 3–5 days.' },
+];
 
 const ogImageSrc = images[0].src;
 
@@ -137,6 +143,38 @@ const jsonLd = {
             Email opens your mail app with the same message pre-filled. We confirm colour, price
             and timeline before you pay.
           </p>
+          <p class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-dust-2">
+            <span>
+              Prefer webmail? Write to <span class="text-dust">{ORDER_EMAIL}</span>
+            </span>
+            <button
+              type="button"
+              id="copy-email-btn"
+              data-email={ORDER_EMAIL}
+              class="rounded-full border border-line-2 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.13em] text-dust transition-colors hover:border-dust hover:text-bone"
+            >
+              Copy email
+            </button>
+          </p>
+
+          <div class="mt-8 rounded-xl border border-line bg-ink-2 p-5">
+            <p class="font-mono text-[10.5px] uppercase tracking-[0.13em] text-dust-2">How ordering works</p>
+            <ol class="mt-4 space-y-4">
+              {
+                orderSteps.map((step, i) => (
+                  <li class="flex gap-3">
+                    <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-3 font-mono text-[11px] text-coral">
+                      {i + 1}
+                    </span>
+                    <p class="text-sm">
+                      <b class="font-medium text-bone">{step.title}</b>
+                      <span class="block text-dust">{step.body}</span>
+                    </p>
+                  </li>
+                ))
+              }
+            </ol>
+          </div>
 
           <div class="mt-8 grid grid-cols-2 gap-4 border-t border-line pt-6 text-sm">
             <div>
@@ -166,6 +204,19 @@ const jsonLd = {
 </Layout>
 
 <script>
+  import { copyToClipboard } from '../../config';
+  import { showToast } from '../../scripts/toast';
+
+  const copyEmailBtn = document.getElementById('copy-email-btn') as HTMLButtonElement | null;
+  copyEmailBtn?.addEventListener('click', async () => {
+    const email = copyEmailBtn.dataset.email ?? '';
+    if (await copyToClipboard(email)) {
+      showToast(`✓ Copied ${email}`, 2500);
+    } else {
+      window.prompt('Copy our email address:', email);
+    }
+  });
+
   const mainImages = document.querySelectorAll<HTMLElement>('.gallery-slide');
   const thumbs = document.querySelectorAll<HTMLButtonElement>('.gallery-thumb');
 
