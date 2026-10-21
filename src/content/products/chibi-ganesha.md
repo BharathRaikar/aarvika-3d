@@ -12,4 +12,5 @@ options:
   - "Filament colour — confirm on Instagram DM"
 featured: true
 order: 2
+hidden: true  # photo is blurry — unhide once reshot
 ---

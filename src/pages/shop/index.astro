@@ -14,7 +14,7 @@ const CATEGORIES: { value: string; label: string }[] = [
   { value: 'fig', label: 'Figurines' },
 ];
 
-const allProducts = (await getCollection('products')).sort((a, b) => {
+const allProducts = (await getCollection('products', ({ data }) => !data.hidden)).sort((a, b) => {
   if (a.data.category === b.data.category) return a.data.order - b.data.order;
   return a.data.category.localeCompare(b.data.category);
 });

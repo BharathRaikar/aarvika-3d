@@ -9,7 +9,7 @@ import CustomTeaser from '../components/CustomTeaser.astro';
 import Footer from '../components/Footer.astro';
 import { withBase } from '../config';
 
-const allProducts = await getCollection('products');
+const allProducts = await getCollection('products', ({ data }) => !data.hidden);
 const featured = allProducts
   .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order);

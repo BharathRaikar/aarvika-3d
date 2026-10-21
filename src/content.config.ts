@@ -19,6 +19,9 @@ const products = defineCollection({
       customInputLabel: z.string().optional(),
       customInputPlaceholder: z.string().optional(),
       featured: z.boolean(),
+      // Set true to take a product off the site (shop, homepage, its own
+      // page) without deleting it.
+      hidden: z.boolean().optional(),
       order: z.number(),
     }),
 });

@@ -11,6 +11,6 @@ description: "A seated Ganesha with fine detail in the crown and hands. Desk, da
 options:
   - "Filament colour — confirm on Instagram DM"
   - "Size"
-featured: false
-order: 1
+featured: true
+order: 2
 ---
