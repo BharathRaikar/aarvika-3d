@@ -14,6 +14,6 @@ options:
   - "Filament colour — confirm on Instagram DM"
   - "Battery tealight included in each piece"
   - "Sold individually — ₹399 per small lamp, ₹900 for the large lamp"
-featured: false
-order: 3
+featured: true
+order: 1
 ---
