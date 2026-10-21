@@ -1,0 +1,1 @@
+import{c as o}from"./config.C1AndAvF.js";import{o as n}from"./igHandoff.C0TJp4sc.js";document.addEventListener("click",async t=>{const a=t.target?.closest("[data-ig-message]");if(!a)return;const e=a.dataset.igMessage;if(!e)return;t.preventDefault();const s=await o(e);n(e,s)});
