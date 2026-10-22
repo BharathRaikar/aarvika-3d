@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import { withBase } from '../../config';
 
 const CATEGORIES: { value: string; label: string }[] = [
   { value: 'all', label: 'Everything' },
@@ -61,6 +62,19 @@ const allProducts = (await getCollection('products', ({ data }) => !data.hidden)
       <p id="empty-state" class="mt-10 hidden text-center text-dust">
         Nothing in this category yet — ask us on Instagram, we might still be able to make it.
       </p>
+
+      <section class="mt-16 rounded-xl border border-line bg-ink-2 p-6 text-center md:p-10">
+        <h2 class="font-display text-2xl font-medium text-bone">Have something specific in mind?</h2>
+        <p class="mx-auto mt-3 max-w-lg text-dust">
+          Send us a photo, a rough sketch, or an STL file. We'll quote a price and timeline on WhatsApp or Instagram.
+        </p>
+        <a
+          href={withBase('custom')}
+          class="mt-6 inline-flex items-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
+        >
+          Request a custom print
+        </a>
+      </section>
     </div>
   </main>
   <Footer />
