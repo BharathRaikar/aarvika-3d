@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { withBase } from '../config';
 import InstagramModal from '../components/InstagramModal.astro';
+import ContactModal from '../components/ContactModal.astro';
 import logoFull from '../assets/logo-full.png';
 
 interface Props {
@@ -51,5 +52,6 @@ const shareImageURL = new URL(shareImage, Astro.site);
   <body class="font-body bg-ink text-bone antialiased">
     <slot />
     <InstagramModal />
+    <ContactModal />
   </body>
 </html>
