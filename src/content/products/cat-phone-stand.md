@@ -4,6 +4,7 @@ price: 549
 category: desk
 images:
   - ../../assets/products/cat-phone-stand.jpg
+  - ../../assets/products/cat-phone-stand-2.jpg
 material: "White PLA"
 size: "approx. 120 × 70 × 60 mm"
 printTime: "~4 h"
