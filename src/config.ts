@@ -22,9 +22,17 @@ export function customMessage(name: string, description: string, phone?: string)
   return `Hi Aarvika 3D — custom enquiry. ${nameLine}${phoneLine}${description}`;
 }
 
-// Email is the second ordering channel alongside Instagram DM (see above).
-// A WhatsApp channel can be slotted in later the same way: a wa.me link built
-// from the same productMessage()/customMessage() text.
+// WhatsApp is the primary ordering channel. Unlike Instagram, wa.me accepts a
+// pre-filled message, so the same productMessage()/customMessage() text goes
+// straight into the chat.
+export const WHATSAPP_NUMBER = '918618062582';
+export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
+
+export function buildWhatsAppLink(text: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+// Email is the fallback ordering channel alongside WhatsApp and Instagram DM.
 export const ORDER_EMAIL = 'aarvika3d@gmail.com';
 
 export function buildMailtoLink(subject: string, body: string): string {
