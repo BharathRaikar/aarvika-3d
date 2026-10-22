@@ -9,6 +9,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://aarvika3d.in',
   integrations: [sitemap()],
+  // Old product URLs, kept so links already shared keep working.
+  redirects: {
+    '/shop/elephant-phone-stand': '/shop/cat-phone-stand',
+  },
   vite: {
     plugins: [tailwindcss()]
   }

@@ -3,7 +3,7 @@ name: "Cat Phone Stand"
 price: 549
 category: desk
 images:
-  - ../../assets/products/elephant-phone-stand.jpg
+  - ../../assets/products/cat-phone-stand.jpg
 material: "White PLA"
 size: "approx. 120 × 70 × 60 mm"
 printTime: "~4 h"
