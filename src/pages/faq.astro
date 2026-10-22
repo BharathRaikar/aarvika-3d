@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: 'Can you print something from my own file?',
-    a: `Yes — send an STL or 3MF on WhatsApp (+91 86180 62582) or Instagram DM, or email it to ${ORDER_EMAIL} and we'll quote. We'll tell you honestly if a model won't print well before taking your money.`,
+    a: `Yes — send an STL or 3MF on WhatsApp (+91 86180 62582) or Instagram DM, or email it to <!--email_off-->${ORDER_EMAIL}<!--/email_off--> and we'll quote. We'll tell you honestly if a model won't print well before taking your money.`,
   },
 ];
 ---
@@ -50,7 +50,8 @@ const faqs = [
                 {item.q}
                 <span class="shrink-0 text-dust transition-transform group-open:rotate-45" aria-hidden="true">+</span>
               </summary>
-              <p class="mt-3 text-dust">{item.a}</p>
+              {/* set:html so the <!--email_off--> markers in answers reach the page as real comments. */}
+              <p class="mt-3 text-dust" set:html={item.a} />
             </details>
           ))
         }

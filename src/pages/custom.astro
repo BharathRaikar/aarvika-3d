@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { INSTAGRAM_DM_LINK, ORDER_EMAIL } from '../config';
+import { INSTAGRAM_DM_LINK, ORDER_EMAIL, buildWhatsAppLink } from '../config';
 
 const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
 ---
@@ -37,15 +37,25 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
             <p class="text-bone"><b class="font-medium">We print it.</b> <span class="text-dust">You get a photo before it ships.</span></p>
           </li>
         </ol>
-        <a
-          href={INSTAGRAM_DM_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-ig-message={igMessage}
-          class="mt-8 inline-flex items-center rounded-full bg-coral px-5 py-3 text-sm font-medium text-coral-ink transition-colors hover:bg-coral-dp"
-        >
-          Start on Instagram
-        </a>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            href={buildWhatsAppLink(igMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-[#20ba59]"
+          >
+            Chat on WhatsApp (+91 86180 62582)
+          </a>
+          <a
+            href={INSTAGRAM_DM_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ig-message={igMessage}
+            class="inline-flex items-center rounded-full border border-line-2 px-5 py-3 text-sm font-medium text-bone transition-colors hover:border-dust"
+          >
+            Or message on Instagram
+          </a>
+        </div>
       </div>
 
       <div class="rounded-xl border border-line bg-ink-2 p-6 md:p-8">
@@ -121,7 +131,7 @@ const igMessage = "Hi Aarvika 3D — I'd like to start a custom order.";
           </div>
           <p class="text-xs text-dust-2">
             WhatsApp opens a chat with your enquiry pre-filled. Instagram opens with your enquiry copied to clipboard — just paste and send. Or email us
-            directly at <a href={`mailto:${ORDER_EMAIL}`} class="text-dust underline underline-offset-2 hover:text-bone">{ORDER_EMAIL}</a>.
+            directly at <!--email_off--><a href={`mailto:${ORDER_EMAIL}`} class="text-dust underline underline-offset-2 hover:text-bone">{ORDER_EMAIL}</a><!--/email_off-->.
           </p>
         </form>
       </div>
