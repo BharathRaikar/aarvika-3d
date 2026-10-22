@@ -3,9 +3,8 @@ name: "Desk Organiser Tray"
 price: 1299
 category: desk
 images:
-  - ../../assets/products/desk-organiser-tray-1.jpg
-  - ../../assets/products/desk-organiser-tray-2.jpg
-  - ../../assets/products/desk-organiser-tray-3.jpg
+  - ../../assets/products/desk-organiser-tray-angled.jpg
+  - ../../assets/products/desk-organiser-tray-side.jpg
 material: "Black PLA"
 size: "approx. 240 × 140 × 80 mm"
 printTime: "~9 h"
